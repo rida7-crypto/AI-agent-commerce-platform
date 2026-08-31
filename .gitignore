@@ -7,3 +7,5 @@ venv/
 # Python Cache
 __pycache__/
 *.pyc
+backend/chroma_db/ 
+backend/audit.db
