@@ -1,0 +1,14 @@
+[
+  {"id": 1, "name": "Rose Hydrating Face Cream", "category": "skincare", "price": 799, "stock": 20, "rating": 4.5, "description": "A rich moisturizer for dry skin made with rose water and shea butter"},
+  {"id": 2, "name": "Vitamin C Brightening Serum", "category": "skincare", "price": 1199, "stock": 15, "rating": 4.6, "description": "A lightweight serum that brightens dull skin and fades dark spots"},
+  {"id": 3, "name": "Aloe Vera Soothing Gel", "category": "skincare", "price": 349, "stock": 40, "rating": 4.2, "description": "Cooling gel for sunburn and irritated sensitive skin"},
+  {"id": 4, "name": "Charcoal Detox Face Wash", "category": "skincare", "price": 449, "stock": 30, "rating": 4.1, "description": "Deep cleansing face wash for oily and acne prone skin"},
+  {"id": 5, "name": "Luxury Skincare Gift Set", "category": "skincare", "price": 1499, "stock": 10, "rating": 4.8, "description": "A gift box with cleanser, moisturizer and serum, perfect for birthdays"},
+  {"id": 6, "name": "Wireless Earbuds Pro", "category": "electronics", "price": 2499, "stock": 12, "rating": 4.4, "description": "Compact wireless earbuds with noise cancellation and 24 hour battery"},
+  {"id": 7, "name": "Portable Phone Charger 10000mAh", "category": "electronics", "price": 999, "stock": 25, "rating": 4.3, "description": "Fast charging power bank that fits in a pocket"},
+  {"id": 8, "name": "Smart LED Desk Lamp", "category": "home", "price": 899, "stock": 18, "rating": 4.0, "description": "Adjustable brightness desk lamp with USB charging port"},
+  {"id": 9, "name": "Scented Soy Candle Set", "category": "home", "price": 599, "stock": 22, "rating": 4.5, "description": "A set of three calming scented candles, great as a gift"},
+  {"id": 10, "name": "Classic Leather Wallet", "category": "fashion", "price": 799, "stock": 16, "rating": 4.2, "description": "A slim genuine leather wallet with card slots"},
+  {"id": 11, "name": "Bestseller Fiction Bundle", "category": "books", "price": 649, "stock": 14, "rating": 4.7, "description": "A bundle of three popular fiction novels"},
+  {"id": 12, "name": "Herbal Hair Growth Oil", "category": "skincare", "price": 399, "stock": 35, "rating": 4.0, "description": "Ayurvedic hair oil for dry scalp and hair fall control"}
+]
