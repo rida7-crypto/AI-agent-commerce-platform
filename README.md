@@ -1,5 +1,11 @@
 # Agent Commerce — an AI agent that can actually *buy* things
 
+
+Uploading untitled-design-1_1ZHq5uYw.mp4…
+
+
+
+
 **A bounded, explainable checkout agent that goes from "gift for mom, ₹1500, skincare" to a verified Razorpay payment — with a full audit trail of every decision it made along the way.**
 
 > Every LLM demo can *chat*. This one can *transact* — safely, provably, and without you ever having to trust it blindly.
