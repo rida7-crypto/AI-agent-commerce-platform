@@ -8,7 +8,13 @@ import json
 import time
 import os
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "audit.db")
+# On Vercel, only /tmp is writable, and it doesn't persist across cold
+# starts - that's fine for a live demo (stays warm while you're using it).
+# Locally, this still just creates the file next to this script.
+if os.getenv("VERCEL"):
+    DB_PATH = "/tmp/audit.db"
+else:
+    DB_PATH = os.path.join(os.path.dirname(__file__), "audit.db")
 
 
 def _get_conn():

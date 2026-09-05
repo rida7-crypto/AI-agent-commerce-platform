@@ -12,7 +12,14 @@ import chromadb
 from chromadb.utils import embedding_functions
 
 CATALOG_PATH = os.path.join(os.path.dirname(__file__), "catalog.json")
-CHROMA_DIR = os.path.join(os.path.dirname(__file__), "chroma_db")
+
+# catalog.json ships with the deployed code so it's always readable, but
+# the Chroma index has to live in /tmp on Vercel since the rest of the
+# filesystem is read-only there.
+if os.getenv("VERCEL"):
+    CHROMA_DIR = "/tmp/chroma_db"
+else:
+    CHROMA_DIR = os.path.join(os.path.dirname(__file__), "chroma_db")
 
 # Free, local embedding model - no API key needed for this part.
 _embed_fn = embedding_functions.SentenceTransformerEmbeddingFunction(
