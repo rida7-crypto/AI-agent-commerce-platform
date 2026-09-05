@@ -399,32 +399,33 @@ async function sendMessage() {
   addMessage(data.reply, "agent");
 
   if (data.status === "needs_confirmation") {
-    showCart(data.cart_item);
+    showCart(data.options && data.options.length ? data.options : [data.cart_item]);
   }
   refreshAudit();
 }
 
-function showCart(item) {
+function showCart(options) {
   const cart = document.getElementById("cart");
   cart.style.display = "block";
-  cart.innerHTML = `
-    <div class="stamp">pending</div>
-    <div class="cart-label">Proposed order</div>
-    <div class="cart-name">${escapeHtml(item.name)}</div>
-    <div class="cart-price">₹${item.price}</div>
-    <div class="cart-meta">match score ${item.match_score} · category: ${item.category}</div>
-    <div class="cart-actions">
-      <button class="btn-primary" onclick="confirmOrder(true)">Confirm &amp; pay</button>
-      <button class="btn-secondary" onclick="confirmOrder(false)">Cancel</button>
-    </div>
-  `;
+  cart.innerHTML = `<div class="cart-label">Proposed order${options.length > 1 ? "s - pick one" : ""}</div>`
+    + options.map((item) => `
+      <div class="cart-option" style="position:relative; border-top:1px dashed var(--border); padding-top:12px; margin-top:12px;">
+        <div class="cart-name">${escapeHtml(item.name)}</div>
+        <div class="cart-price">₹${item.price}</div>
+        <div class="cart-meta">match score ${item.match_score} · category: ${item.category}</div>
+        <div class="cart-actions">
+          <button class="btn-primary" onclick="confirmOrder(true, '${item.id}')">Confirm &amp; pay</button>
+          <button class="btn-secondary" onclick="confirmOrder(false, null)">Cancel</button>
+        </div>
+      </div>
+    `).join("");
 }
 
-async function confirmOrder(confirm) {
+async function confirmOrder(confirm, itemId) {
   const res = await fetch(`${API}/api/confirm`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ session_id: sessionId, confirm }),
+    body: JSON.stringify({ session_id: sessionId, confirm, item_id: itemId }),
   });
   const data = await res.json();
   document.getElementById("cart").style.display = "none";
