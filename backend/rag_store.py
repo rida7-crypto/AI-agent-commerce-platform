@@ -8,23 +8,27 @@ never recommend a product that doesn't actually exist.
 
 import json
 import os
+
+# Force Chroma's cached embedding model files into /tmp, the only
+# writable directory on Vercel. Must be set before chromadb is imported.
+if os.getenv("VERCEL"):
+    os.environ.setdefault("HOME", "/tmp")
+    os.environ.setdefault("XDG_CACHE_HOME", "/tmp/.cache")
+
 import chromadb
 from chromadb.utils import embedding_functions
 
 CATALOG_PATH = os.path.join(os.path.dirname(__file__), "catalog.json")
 
-# catalog.json ships with the deployed code so it's always readable, but
-# the Chroma index has to live in /tmp on Vercel since the rest of the
-# filesystem is read-only there.
 if os.getenv("VERCEL"):
     CHROMA_DIR = "/tmp/chroma_db"
 else:
     CHROMA_DIR = os.path.join(os.path.dirname(__file__), "chroma_db")
 
-# Free, local embedding model - no API key needed for this part.
-_embed_fn = embedding_functions.SentenceTransformerEmbeddingFunction(
-    model_name="all-MiniLM-L6-v2"
-)
+# Chroma's built-in default embedding function - a small ONNX MiniLM model,
+# not the full sentence-transformers/PyTorch stack. Much lighter, no
+# separate model download step needed at deploy time.
+_embed_fn = embedding_functions.DefaultEmbeddingFunction()
 
 _client = chromadb.PersistentClient(path=CHROMA_DIR)
 

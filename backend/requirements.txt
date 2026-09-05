@@ -3,7 +3,6 @@ uvicorn[standard]
 python-dotenv
 razorpay
 chromadb
-sentence-transformers
 anthropic
 huggingface_hub
 pydantic
